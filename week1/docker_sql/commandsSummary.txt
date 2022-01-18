@@ -1,0 +1,28 @@
+cd Desktop
+mkdir ZoomCamp
+cd ZoomCamp/
+mkdir DataEngineering
+cd DataEngineering/
+touch dummy.txt
+ls
+git init
+git remote add orgin https://github.com/AnudeepReddy-Katta/DataEngineering.git
+git remote -v
+git add .
+git commit -m 'docker video 1'
+git push orgin master
+mkdir week1
+cd week1/
+mkdir docker_sql
+cd docker_sql/
+code .
+winpty docker run hello-world
+winpty docker run -t ubuntu bash
+winpty docker run -it python=3.9.1
+winpty docker run -it --entrypoint=bash python:3.9.1
+winpty docker build -t test:pandas .
+winpty docker run -it test:pandas
+winpty docker run -it test:pandas 10-10-1997
+git add .
+git commit -m 'First Commit'
+git push orgin master
