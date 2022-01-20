@@ -1,3 +1,4 @@
 *.csv filter=lfs diff=lfs merge=lfs -text
 week1/docker_sql/ny_taxi_postgres_data/base/16384/16392 filter=lfs diff=lfs merge=lfs -text
+week1/docker_sql/output.cav[[:space:]] filter=lfs diff=lfs merge=lfs -text
 *.cav filter=lfs diff=lfs merge=lfs -text
