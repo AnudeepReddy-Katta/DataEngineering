@@ -26,3 +26,9 @@ winpty docker run -it test:pandas 10-10-1997
 git add .
 git commit -m 'First Commit'
 git push orgin master
+
+
+git lfs track '*.csv'
+git add .gitattributes
+git add .
+

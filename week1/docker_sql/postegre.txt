@@ -24,3 +24,54 @@ $ winpty docker run -it -e PGADMIN_DEFAULT_EMAIL="admin@admin.com" -e PGADMIN_DE
 $ winpty docker run -it -e POSTGRES_USER="root" -e POSTGRES_PASSWORD="root" -e POSTGRES_DB="ny_taxi" -v /$(pwd)/ny_taxi_postgres_data/:/var/lib/postgresql/data -p 5432:5432 --network=pg-network --name=pgadmin postgres:13
 
 docker rm pgadmin
+
+pgcli -h localhost -U root -d ny_taxi
+
+ssh -i ~/.ssh/gcp anudeep@34.93.147.5
+
+sftp de-zoomcamp
+
+export GOOGLE_APPLICATION_CREDENTIALS=~/.gc/cosmic-stacker-338802-63e376aa56bc.json
+
+gcloud auth activate-service-account --key-file
+
+URL="https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2021-01.csv" 
+
+python data_ingestion.py \
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_data \
+  --url=${URL}
+
+
+docker build -t taxi_ingest:v001 .
+
+winpty docker run -it --network=pg-network \
+  taxi_ingest:v001\
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_data \
+  --url=${URL}
+
+winpty docker run -it --network=pg-network \
+  taxi_ingest:v001\
+  --user=root \
+  --password=root \
+  --host=172.18.0.1 \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_data \
+  --url=${URL}
+
+  python -m http.server
+
+  docker-compose up
+
+  docker-compose down
+  
