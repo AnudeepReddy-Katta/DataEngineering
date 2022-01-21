@@ -1,3 +1,42 @@
+3.
+SELECT COUNT(*) FROM yellow_taxi_data_jan 
+WHERE EXTRACT('month' from  tpep_pickup_datetime)= 1
+AND EXTRACT('day' from  tpep_pickup_datetime)= 15
+
+4.
+SELECT EXTRACT('day' from  tpep_pickup_datetime) as day,MAX(tip_amount) as daily_max_tip FROM yellow_taxi_data_jan 
+GROUP BY day
+ORDER BY day
+RDER BY daily_max_tip DESC
+
+5.
+SELECT "Zone",COUNT(*) as num FROM yellow_taxi_data_jan 
+LEFT JOIN zones 
+ON "DOLocationID" = "LocationID"
+WHERE EXTRACT('month' from  tpep_pickup_datetime)= 1
+AND EXTRACT('day' from  tpep_pickup_datetime)= 14
+AND "PULocationID" = (SELECT "LocationID" FROM zones WHERE "Zone"='Central Park')
+GROUP BY "Zone"
+
+6.
+SELECT "DOLocationID","PULocationID",AVG(total_amount) as average INTO TEMP TABLE dummy
+FROM yellow_taxi_data_jan 
+GROUP BY "DOLocationID","PULocationID"
+ORDER BY average DESC 
+LIMIT 1
+
+SELECT * FROM dummy
+
+SELECT (SELECT "Zone" FROM dummy 
+LEFT JOIN zones 
+ON "PULocationID" = "LocationID")
+AS T1,
+(SELECT "Zone" FROM dummy 
+LEFT JOIN zones
+ON "DOLocationID" = "LocationID") AS T2, (SELECT average FROM dummy) as T3
+
+Answers - 
+
 1. Google Cloud SDK 340.0.0
 2. 
 google_bigquery_dataset.dataset: Creating...

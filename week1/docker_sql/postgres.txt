@@ -46,6 +46,14 @@ python data_ingestion.py \
   --table_name=yellow_taxi_data \
   --url=${URL}
 
+python data_ingestion.py \
+  --user=root \
+  --password=root \
+  --host=localhost \
+  --port=5432 \
+  --db=ny_taxi \
+  --table_name=yellow_taxi_data_jan \
+  --url=${URL}
 
 docker build -t taxi_ingest:v001 .
 
