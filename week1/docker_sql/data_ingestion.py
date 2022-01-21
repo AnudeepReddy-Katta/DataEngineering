@@ -19,7 +19,7 @@ def main(params):
         table_name = params.table_name
         url = params.url
 
-        csv_name = 'output.cav'
+        csv_name = 'output.csv'
 
         os.system(f'wget {url} -O {csv_name}')  
 

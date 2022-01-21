@@ -1,0 +1,13 @@
+1. Google Cloud SDK 340.0.0
+2. 
+google_bigquery_dataset.dataset: Creating...
+google_storage_bucket.data-lake-bucket: Creating...
+google_bigquery_dataset.dataset: Creation complete after 4s [id=projects/cosmic-stacker-338802/datasets/trips_data_all]
+google_storage_bucket.data-lake-bucket: Creation complete after 5s [id=dtc_data_lake_cosmic-stacker-338802]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+
+3. 53024
+4. 20th - 1140.44
+5. UPPER EAST SIDE SOUTH
+6. Alphabet City / Unknown 
