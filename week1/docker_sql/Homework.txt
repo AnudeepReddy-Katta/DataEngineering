@@ -19,6 +19,7 @@ AND "PULocationID" = (SELECT "LocationID" FROM zones WHERE "Zone"='Central Park'
 GROUP BY "Zone"
 
 6.
+SELECT CONCAT(COALESCE(dummy.pickuploc,' Unknown'),' /',COALESCE(dummy.droploc,' Unknown')) FROM (
 SELECT z1."Zone" as pickuploc,z2."Zone" as droploc,AVG(total_amount) as average 
 FROM yellow_taxi_data_jan y
 INNER JOIN zones z1
@@ -27,7 +28,7 @@ INNER JOIN zones z2
 ON y."DOLocationID" = z2."LocationID"
 GROUP BY 1,2
 ORDER BY average DESC 
-LIMIT 1
+LIMIT 1 ) dummy
 
 -- Alternate Way
 SELECT "DOLocationID","PULocationID",AVG(total_amount) as average INTO TEMP TABLE dummy
@@ -44,8 +45,8 @@ ON "PULocationID" = "LocationID")
 AS T1,'/',
 (SELECT "Zone" FROM dummy 
 LEFT JOIN zones
-ON "DOLocationID" = "LocationID") AS T2, (SELECT average FROM dummy) as T3
-)
+ON "DOLocationID" = "LocationID") AS T2)
+
 Answers - 
 
 1. Google Cloud SDK 340.0.0
